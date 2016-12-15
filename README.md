@@ -23,7 +23,7 @@ We start with an initial batch size of randomly selected points for both the cla
 We experimented with SVM as the base learner with linear kernel, and observed that the AdaBoost with DT as estimator performed slightly better. SVM with RBF as kernel performed worst by classifying all labels as benign, but that's probably because we used the default C and gamma values. We leave the parameter tuning part by grid search over the parameter space for the future update.
 
 ### Results:
-The following results were observed with fixed random seeds so that we can replicate the results. Even if the random seed is not initialized, 
+The following results were observed with fixed random seeds so that we can replicate the results. Even if the random seed is not initialized, the results were pretty much similar.
 
 #### Predictions for the active learner :
 ```
@@ -42,8 +42,7 @@ Confusion matrix:
 [[122   2]
  [  0  64]]
  ```
- 
- #### Predictions for the random learner :
+#### Predictions for the random learner :
  ```
 Classification report for classifier AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=1,
           n_estimators=400, random_state=None):
@@ -64,5 +63,6 @@ Confusion matrix:
 As we see in the plot below, the active learner clearly outperforms the random learner. We see the best results when the active learner just used 270 queried labels with an accuracy of 98.94%  (error rate = 0.0106).
 ![alt text](https://github.com/MascarenhasV/kaggle-bcwd/blob/master/plots/plot.png "Active vs. Random Learner")
 
-In almost all cases (without random seeds), the active learner performed better than the random one. 
+In almost all cases (without random seeds), the active learner did better than the random learner. We also keep track of the best model in case the active learner overfits after achieving the best results.
+
 
